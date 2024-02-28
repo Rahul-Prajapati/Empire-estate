@@ -16,7 +16,8 @@ install nodemon
 install npm init -y 
 created header component
 created Server on port 3000
-Moved git from client to root
+connected database
+created user and accomodation schema
 
 
 
