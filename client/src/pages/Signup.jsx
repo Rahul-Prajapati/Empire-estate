@@ -1,12 +1,29 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link , useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  signInStart,
+  signInSuccess,
+  signInFailure,
+} from '../slice/userSlice.js'
 
 function Signup() {
   const [togglelogin, settogglelogin] = useState(true);
   const [formData, setFormData] = useState({});
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
+ // const { loadings, errors } = useSelector((state) => state.user);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const user = useSelector((store) => store.user);
+
+  // useEffect(()=> {
+
+  //   { user ? navigate('./') : <></>}
+
+  // },[])
+
 
   const handleChange = (e) => {
     setFormData({
@@ -60,9 +77,9 @@ function Signup() {
       } else {
 
         try {
-          console.log("try block");
+          // console.log("try block");
           console.log(formData);
-          setLoading(true);
+          dispatch(signInStart());
 
           const res = await fetch('/api/auth/signin', {
             method:'POST',
@@ -77,19 +94,22 @@ function Signup() {
     
           if (data.success === false){
             console.log("false")
-            setLoading(false);
-            setError(data.message);
+            // setLoading(false);
+            // setError(data.message);
+            dispatch(signInFailure(data.message));
             return;
           }
     
-          setLoading(false);
-          setError(null);
+          // setLoading(false);
+          // setError(null);
+          dispatch(signInSuccess(data));
           navigate("/");
     
         } catch (error) {
           console.log("catch")
-          setLoading(false);
-          setError(error.message);
+          // setLoading(false);
+          // setError(error.message);
+          dispatch(signInFailure(error.message));
         }
         
       }

@@ -3,6 +3,8 @@ import { FaSearch } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
 const Header = () =>{
+
+
     return (
        <div className='flex justify-between bg-slate-200 m-3 p-4' >
         <h1>
@@ -17,7 +19,6 @@ const Header = () =>{
             <li className='sm:inline hover:underline '><Link to="/">Home</Link></li>
             <li className='sm:inline hover:underline '><Link to="/about">About</Link></li>
             <li className='sm:inline hover:underline '><Link to="/profile">Profile</Link></li>
-            <li className='sm:inline hover:underline '><Link to="/signup">Signup</Link></li>
         </ul>
         
        </div>
