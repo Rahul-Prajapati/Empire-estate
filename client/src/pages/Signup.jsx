@@ -6,6 +6,7 @@ import {
   signInSuccess,
   signInFailure,
 } from '../slice/userSlice.js'
+import OAuth from '../components/OAuth';
 
 function Signup() {
   const [togglelogin, settogglelogin] = useState(true);
@@ -158,6 +159,7 @@ function Signup() {
             type='submit'>
               {togglelogin ? 'Signup' : 'Signin'}
         </button>
+        <OAuth/>
       </form>
 
           {error && <p className='text-red-500 ml-5'>{error}</p>}

@@ -36,6 +36,13 @@ create store
 create UserSlice and reducer
 install redux-persist
 
+install firebase
+create firebase.js file
+create google api route for google authentication
+added avatar in user_model
+added OAuth.jsx component for google authentication 
+
+
 # Freatures
 The project has following pages
     Home
