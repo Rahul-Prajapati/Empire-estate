@@ -7,30 +7,27 @@ import {
   signInFailure,
 } from '../slice/userSlice.js'
 import OAuth from '../components/OAuth';
+import { validateData } from '../utils/validate.js';
 
 function Signup() {
   const [togglelogin, settogglelogin] = useState(true);
   const [formData, setFormData] = useState({});
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
- // const { loadings, errors } = useSelector((state) => state.user);
+  const [errMessage, seterrMessage] = useState("");
+ 
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
-  const user = useSelector((store) => store.user);
-
-  // useEffect(()=> {
-
-  //   { user ? navigate('./') : <></>}
-
-  // },[])
-
 
   const handleChange = (e) => {
     setFormData({
       ...formData,
       [e.target.id]: e.target.value,
+      
     });
+    const message = validateData(formData.username, formData.email,formData.password );
+    seterrMessage(message);
+    if(message) return errMessage;
     console.log(e.target.value);
   };
 
@@ -160,6 +157,7 @@ function Signup() {
               {togglelogin ? 'Signup' : 'Signin'}
         </button>
         <OAuth/>
+        <p className="text-red-500 p-3">{errMessage}</p>
       </form>
 
           {error && <p className='text-red-500 ml-5'>{error}</p>}

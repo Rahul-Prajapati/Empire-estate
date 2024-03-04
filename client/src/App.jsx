@@ -5,6 +5,7 @@ import About from './pages/About'
 import Profile from './pages/Profile'
 import Home from './pages/Home'
 import Signup from './pages/Signup'
+import PrivateRoute from './components/PrivateRoute';
 
 const App = () => {
   return (
@@ -15,6 +16,9 @@ const App = () => {
       <Route path='/signup' element={<Signup />} />
       <Route path='/about' element={<About />} />
       <Route path='/profile' element={<Profile />} />
+      <Route element={<PrivateRoute />}>
+          <Route path='/profile' element={<Profile />} />
+      </Route>
     </Routes>
   </BrowserRouter>
     
