@@ -41,6 +41,14 @@ create firebase.js file
 create google api route for google authentication
 added avatar in user_model
 added OAuth.jsx component for google authentication 
+completed profile page functionalities and UI 
+added update button to update the profile of user
+create update user api route
+the functionality to change the profile pic of user is added to the profile page UI
+completed update user functionality
+add delete user functionality
+add sign out functionality
+add create listing api route
 
 
 
