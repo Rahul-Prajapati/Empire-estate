@@ -43,6 +43,8 @@ added avatar in user_model
 added OAuth.jsx component for google authentication 
 
 
+
+
 # Freatures
 The project has following pages
     Home

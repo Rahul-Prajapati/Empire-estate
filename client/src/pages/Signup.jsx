@@ -15,20 +15,40 @@ function Signup() {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const [errMessage, seterrMessage] = useState("");
+  const [mandatory, setMandatory] = useState(false);
  
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const handleChange = (e) => {
+    
     setFormData({
       ...formData,
       [e.target.id]: e.target.value,
       
     });
-    const message = validateData(formData.username, formData.email,formData.password );
+
+    if (togglelogin) {
+      const message = validateData(formData.username, formData.email,formData.password );
     seterrMessage(message);
-    if(message) return errMessage;
+
+    if (message) {
+      // seterrMessage;
+      setMandatory(false);
+      
+    } else {
+      setMandatory(true)
+      seterrMessage
+      
+    }
     console.log(e.target.value);
+      
+    } else {
+      setMandatory(true);
+    }
+
+    
+   
   };
 
   const handleLogin = () => {   
@@ -153,7 +173,7 @@ function Signup() {
         />
         <button 
             className='text-slate-800 rounded-lg border p-3 bg-green-800 hover:opacity-90' 
-            type='submit'>
+            type='submit' disabled={!mandatory} >
               {togglelogin ? 'Signup' : 'Signin'}
         </button>
         <OAuth/>
