@@ -3,7 +3,9 @@ import { useSelector } from 'react-redux'
 import { useRef, useState, useEffect } from 'react';
 import { getDownloadURL, getStorage, ref, uploadBytesResumable } from 'firebase/storage';
 import { app } from '../firebase';
-import { updateUserStart, updateUserSuccess, updateUserFailure } from '../slice/userSlice';
+import { updateUserStart, updateUserSuccess, updateUserFailure,
+         deleteUserFailure, deleteUserStart, deleteUserSuccess,
+         signOutUserStart } from '../slice/userSlice';
 import { useDispatch } from 'react-redux';
 
 function Profile() {
@@ -78,6 +80,39 @@ function Profile() {
     }
   };
 
+  const handleDeleteUser = async () => {
+    try {
+      dispatch(deleteUserStart());
+      const res = await fetch(`/api/user/delete/${currentUser._id}`, {
+        method: 'DELETE',
+      });
+      const data = await res.json();
+      if (data.success === false) {
+        dispatch(deleteUserFailure(data.message));
+        return;
+      }
+      dispatch(deleteUserSuccess(data));
+    } catch (error) {
+      dispatch(deleteUserFailure(error.message));
+    }
+  };
+
+  const handleSignOut = async () => {
+
+    try {
+      dispatch(signOutUserStart())
+      const res = await fetch('/api/auth/signout');
+      const data = await res.json();
+      if (data.success === false) {
+        dispatch(deleteUserFailure(data.message));
+        return;
+      }
+      dispatch(deleteUserSuccess(data));
+    } catch (error) {
+      dispatch(deleteUserFailure(data.message));
+    }
+  }
+
   return (
     <div className='flex flex-col justify-center items-center p-2'>
       <h1 className='font-bold text-fuchsia-900 text-3xl p-2 ' >Profile</h1>
@@ -111,16 +146,42 @@ function Profile() {
         </p>
 
 
-        {/* <img src={currentUser.avatar} alt="profile" className='rounded-full h-24 w-24 object-cover cursor-pointer self-center mt-2' /> */}
-        <input type="text" placeholder='username' id='username' defaultValue={currentUser.username} className='border p-3 rounded-lg' onChange={handleChange}  />
-        <input type="email" placeholder='email' id='email' className='border p-3 rounded-lg' defaultValue={currentUser.email} onChange={handleChange} />
-        <input type="text" placeholder='password' id='password' className='border p-3 rounded-lg' onChange={handleChange} />
-        <button className='bg-slate-700 text-white rounded-lg p-3 uppercase hover:opacity-95 disabled:opacity-80' >update</button>
+        <input 
+          type="text" 
+          placeholder='username' 
+          id='username' 
+          defaultValue={currentUser.username} 
+          className='border p-3 rounded-lg' 
+          onChange={handleChange}  />
+
+        <input 
+          type="email" 
+          placeholder='email' 
+          id='email' 
+          className='border p-3 rounded-lg' 
+          defaultValue={currentUser.email} 
+          onChange={handleChange} />
+
+        <input 
+          type="text" 
+          placeholder='password' 
+          id='password' 
+          className='border p-3 rounded-lg' 
+          onChange={handleChange} />
+
+        <button 
+          className='bg-slate-700 text-white rounded-lg p-3 uppercase hover:opacity-95 disabled:opacity-80' >
+            update
+        </button>
 
       </form>
       <div className="flex justify-between mt-5 gap-10">
-        <span className='text-red-700 cursor-pointer'>Delete account</span>
-        <span className='text-red-700 cursor-pointer'>Sign out</span>
+          <span
+            onClick={handleDeleteUser}
+            className='text-red-700 cursor-pointer'>
+            Delete account
+          </span>
+          <span className='text-red-700 cursor-pointer' onClick={handleSignOut} >Sign out</span>
       </div>
 
 

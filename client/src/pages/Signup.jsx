@@ -177,10 +177,8 @@ function Signup() {
               {togglelogin ? 'Signup' : 'Signin'}
         </button>
         <OAuth/>
-        <p className="text-red-500 p-3">{errMessage}</p>
+        <p className="text-red-500 p-1">{errMessage}</p>
       </form>
-
-          {error && <p className='text-red-500 ml-5'>{error}</p>}
             <div 
                   className='flex ml-5 cursor-pointer ' 
                   onClick={handleLogin} 
@@ -191,6 +189,7 @@ function Signup() {
                    :"New to website? Sign Up now "
             }
             </div>
+            {error && <p className='text-red-500 ml-5'>{error}</p>}
     </div>
   )
 }
