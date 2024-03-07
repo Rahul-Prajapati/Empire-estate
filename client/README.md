@@ -52,7 +52,11 @@ add create listing api route
 create listing page UI 
 listing form is created with required fields
 multiple image upload functionality is added
-
+complete create listing functionalities
+listing API route is created
+show listing functionality is added
+delete show listing api route is created
+delete show listing functionality is added 
 
 
 

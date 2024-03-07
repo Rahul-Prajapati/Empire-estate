@@ -1,9 +1,9 @@
 import express from 'express';
-import { createListing } from '../controllers/accomodation_controllers.js';
+import { createListing, deleteListing } from '../controllers/accomodation_controllers.js';
 import { verifyToken } from '../utils/verifyUser.js';
 
 const router = express.Router();
 
 router.post('/create', verifyToken, createListing);
-
+router.delete('/delete/:id', verifyToken, deleteListing);
 export default router;
