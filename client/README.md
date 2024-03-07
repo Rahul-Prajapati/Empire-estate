@@ -49,6 +49,10 @@ completed update user functionality
 add delete user functionality
 add sign out functionality
 add create listing api route
+create listing page UI 
+listing form is created with required fields
+multiple image upload functionality is added
+
 
 
 

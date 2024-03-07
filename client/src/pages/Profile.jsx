@@ -7,6 +7,7 @@ import { updateUserStart, updateUserSuccess, updateUserFailure,
          deleteUserFailure, deleteUserStart, deleteUserSuccess,
          signOutUserStart } from '../slice/userSlice';
 import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 function Profile() {
   const fileRef = useRef(null);
@@ -173,6 +174,9 @@ function Profile() {
           className='bg-slate-700 text-white rounded-lg p-3 uppercase hover:opacity-95 disabled:opacity-80' >
             update
         </button>
+        <Link className='bg-green-700 text-white p-3 rounded-lg uppercase text-center hover:opacity-85' to={"/create-listing"}>
+          Create Listing
+        </Link>
 
       </form>
       <div className="flex justify-between mt-5 gap-10">
