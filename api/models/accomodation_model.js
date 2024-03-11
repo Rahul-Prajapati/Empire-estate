@@ -2,11 +2,6 @@ import mongoose from 'mongoose';
 
 const accomodationSchema = new mongoose.Schema(
   {
-    // ID: {
-    //     type: Number,
-    //     required: true,
-    //     unique: true,
-    //   },
     name: {
       type: String,
       required: true,
