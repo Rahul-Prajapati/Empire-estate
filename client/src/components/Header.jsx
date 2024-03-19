@@ -42,13 +42,17 @@ const Header = () =>{
             <li className='sm:inline hover:underline '><Link to="/about">About</Link></li>
            
          
-            <Link to='/profile'>
+            
             {currentUser ? (
+              <Link to='/profile'>
               <img className='rounded-full h-7 w-7 object-cover' src={currentUser.avatar} alt='profile' />
+              </Link>
             ) : (
-              <li className=' text-slate-700 hover:underline'> Sign in</li>
+              <Link to='/Signup'>
+              <li className=' text-slate-700 hover:underline'> Sign up</li>
+              </Link>
             )}
-          </Link>
+          
           
         </ul>
         

@@ -70,7 +70,7 @@ export default function Search() {
       if (
         e.target.id === 'all' ||
         e.target.id === 'rent' ||
-        e.target.id === 'sale'
+        e.target.id === 'sell'
       ) {
         setSidebardata({ ...sidebardata, type: e.target.id });
       }
@@ -147,15 +147,15 @@ export default function Search() {
             <label className='font-semibold'>Type:</label>
             <div className='flex gap-2'>
               <input type='checkbox' id='all' className='w-5' onChange={handleChange} checked={sidebardata.type === 'all'}/>
-              <span>Rent & Sale</span>
+              <span>Rent & sell</span>
             </div>
             <div className='flex gap-2'>
               <input type='checkbox' id='rent' className='w-5' onChange={handleChange} checked={sidebardata.type === 'rent'} />
               <span>Rent</span>
             </div>
             <div className='flex gap-2'>
-              <input type='checkbox' id='sale' className='w-5' onChange={handleChange} checked={sidebardata.type === 'sale'} />
-              <span>Sale</span>
+              <input type='checkbox' id='sell' className='w-5' onChange={handleChange} checked={sidebardata.type === 'sell'} />
+              <span>sell</span>
             </div>
             <div className='flex gap-2'>
               <input type='checkbox' id='offer' className='w-5' onChange={handleChange} checked={sidebardata.offer} />

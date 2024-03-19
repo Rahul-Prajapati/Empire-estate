@@ -7,7 +7,7 @@ import { updateUserStart, updateUserSuccess, updateUserFailure,
          deleteUserFailure, deleteUserStart, deleteUserSuccess,
          signOutUserStart } from '../slice/userSlice';
 import { useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 
 function Profile() {
@@ -23,6 +23,7 @@ function Profile() {
 
   const [showListingsError, setShowListingsError] = useState(false);
   const [userListings, setUserListings] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (file) {
@@ -112,7 +113,9 @@ function Profile() {
         dispatch(deleteUserFailure(data.message));
         return;
       }
+     // navigate("../signup");
       dispatch(deleteUserSuccess(data));
+      
     } catch (error) {
       dispatch(deleteUserFailure(data.message));
     }
@@ -156,7 +159,7 @@ function Profile() {
   return (
     <div className='flex flex-col justify-center items-center p-2'>
       <h1 className='font-bold text-fuchsia-900 text-3xl p-2 ' >Profile</h1>
-      <h1 className='font-bold text-fuchsia-900 text-xl'>Hi {currentUser.username}</h1>
+      {/* <h1 className='font-bold text-fuchsia-900 text-xl'>Hi {currentUser.username}</h1> */}
       <form className='flex flex-col gap-4' onSubmit={handleSubmit} >
       <input
           onChange={(e) => setFile(e.target.files[0])}

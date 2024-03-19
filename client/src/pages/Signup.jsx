@@ -10,6 +10,8 @@ import OAuth from '../components/OAuth';
 import { validateData } from '../utils/validate.js';
 
 function Signup() {
+
+  const { currentUser } = useSelector((store)=> store.user);
   const [togglelogin, settogglelogin] = useState(true);
   const [formData, setFormData] = useState({});
   const [error, setError] = useState(null);
@@ -133,12 +135,17 @@ function Signup() {
       }
   };
 
+  useEffect(()=>{
+    // const { currentUser } = useSelector((store)=> store.user);
+    { currentUser ? navigate("../profile"):<></>}
+  },[])
+
   return (
     <div 
       className='p-3 mx-auto max-w-lg sm:place-items-center'>
       <h1 
           className='text-3xl text-center font-bold gap-2'> 
-          {(togglelogin)? 'Signup' : 'Signin' }
+          {(togglelogin)? 'Sign Up' : 'Sign In' }
       </h1>
       <form 
           className='flex flex-col gap-1 p-4' 
@@ -174,7 +181,7 @@ function Signup() {
         <button 
             className='text-slate-800 rounded-lg border p-3 bg-green-800 hover:opacity-90' 
             type='submit' disabled={!mandatory} >
-              {togglelogin ? 'Signup' : 'Signin'}
+              {togglelogin ? 'Sign Up' : 'Sign In'}
         </button>
         <OAuth/>
         <p className="text-red-500 p-1">{errMessage}</p>
