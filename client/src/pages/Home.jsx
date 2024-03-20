@@ -8,10 +8,9 @@ import ListingItems from '../components/ListingItems';
 
 const Home = () => {
   const [offerListings, setOfferListings] = useState([]);
-  const [sellListings, setsellListings] = useState([]);
+  const [saleListings, setSaleListings] = useState([]);
   const [rentListings, setRentListings] = useState([]);
   SwiperCore.use([Navigation]);
-  console.log(offerListings);
   useEffect(() => {
     const fetchOfferListings = async () => {
       try {
@@ -28,17 +27,17 @@ const Home = () => {
         const res = await fetch('/api/listing/get?type=rent&limit=4');
         const data = await res.json();
         setRentListings(data);
-        fetchsellListings();
+        fetchSaleListings();
       } catch (error) {
         console.log(error);
       }
     };
 
-    const fetchsellListings = async () => {
+    const fetchSaleListings = async () => {
       try {
         const res = await fetch('/api/listing/get?type=sell&limit=4');
         const data = await res.json();
-        setsellListings(data);
+        setSaleListings(data);
       } catch (error) {
         log(error);
       }
@@ -114,14 +113,14 @@ const Home = () => {
             </div>
           </div>
         )}
-        {sellListings && sellListings.length > 0 && (
+        {saleListings && saleListings.length > 0 && (
           <div className=''>
             <div className='my-3'>
               <h2 className='text-2xl font-semibold text-slate-600'>Recent places for sell</h2>
               <Link className='text-sm text-blue-800 hover:underline' to={'/search?type=sell'}>Show more places for sell</Link>
             </div>
             <div className='flex flex-wrap gap-4'>
-              {sellListings.map((listing) => (
+              {saleListings.map((listing) => (
                 <ListingItems listing={listing} key={listing._id} />
               ))}
             </div>
