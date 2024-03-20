@@ -19,6 +19,10 @@ const userSchema = new mongoose.Schema({
         type: String,
         default: "https://img.freepik.com/premium-vector/anonymous-user-circle-icon-vector-illustration-flat-style-with-long-shadow_520826-1931.jpg"
     },
+    isAdmin: {
+        type: Boolean,
+        default: false,
+      },
 }, {timestamps: true });
 
 const User = mongoose.model('User', userSchema);

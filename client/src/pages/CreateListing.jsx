@@ -12,8 +12,6 @@ import { useNavigate } from 'react-router-dom';
 
 export default function CreateListing() {
   const { currentUser } = useSelector((store) => store.user);
-  console.log(currentUser.username);
-  console.log(currentUser._id);
   const navigate = useNavigate();
   const [files, setFiles] = useState([]);
   const [formData, setFormData] = useState({
@@ -35,8 +33,6 @@ export default function CreateListing() {
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
 
-
-  console.log(formData);
   const handleImageSubmit = (e) => {
     if (files.length > 0 && files.length + formData.imageUrls.length < 7) {
       setUploading(true);
@@ -76,7 +72,7 @@ export default function CreateListing() {
         (snapshot) => {
           const progress =
             (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-          console.log(`Upload is ${progress}% done`);
+         // console.log(`Upload is ${progress}% done`);
         },
         (error) => {
           reject(error);
@@ -151,12 +147,9 @@ export default function CreateListing() {
       const data = await res.json();
 
       setLoading(false);
-      console.log("0",data);
       if (data.success === false) {
         setError(data.message);
       }
-      console.log("navigation to listing");
-      console.log("1",data);
       navigate(`/listing/${data._id}`);
     } catch (error) {
       setError(error.message);

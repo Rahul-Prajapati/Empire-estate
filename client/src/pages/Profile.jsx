@@ -64,7 +64,6 @@ function Profile() {
     e.preventDefault();
     try {
       dispatch(updateUserStart());
-      console.log(currentUser._id);
       const res = await fetch(`/api/user/update/${currentUser._id}`, {
         method: 'POST',
         headers: {
@@ -74,7 +73,6 @@ function Profile() {
       });
       const data = await res.json();
       if (data.success === false) {
-        console.log("failure at ====");
         dispatch(updateUserFailure(data.message));
         return;
       }
@@ -113,7 +111,6 @@ function Profile() {
         dispatch(deleteUserFailure(data.message));
         return;
       }
-     // navigate("../signup");
       dispatch(deleteUserSuccess(data));
       
     } catch (error) {
@@ -144,7 +141,6 @@ function Profile() {
       });
       const data = await res.json();
       if (data.success === false) {
-        console.log(data.message);
         return;
       }
 
@@ -157,9 +153,8 @@ function Profile() {
   };
 
   return (
-    <div className='flex flex-col justify-center items-center p-2'>
-      <h1 className='font-bold text-fuchsia-900 text-3xl p-2 ' >Profile</h1>
-      {/* <h1 className='font-bold text-fuchsia-900 text-xl'>Hi {currentUser.username}</h1> */}
+    <div className='p-2 max-w-lg mx-auto '>
+      <h1 className='font-bold text-fuchsia-900 text-center text-3xl p-2 ' >Profile</h1>
       <form className='flex flex-col gap-4' onSubmit={handleSubmit} >
       <input
           onChange={(e) => setFile(e.target.files[0])}

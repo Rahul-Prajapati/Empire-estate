@@ -43,7 +43,6 @@ function Signup() {
       seterrMessage
       
     }
-    console.log(e.target.value);
       
     } else {
       setMandatory(true);
@@ -61,8 +60,6 @@ function Signup() {
     e.preventDefault();  
       if (togglelogin) {
         try {
-          console.log("try block");
-          console.log(formData);
           setLoading(true);
 
           const res = await fetch('/api/auth/signup', {
@@ -74,10 +71,8 @@ function Signup() {
           });
     
           const data = await res.json();
-          console.log("data:",data);
     
           if (data.success === false){
-            console.log("false")
             setLoading(false);
             setError(data.message);
             return;
@@ -88,7 +83,6 @@ function Signup() {
           handleLogin();
     
         } catch (error) {
-          console.log("catch")
           setLoading(false);
           setError(error.message);
         }
@@ -97,8 +91,6 @@ function Signup() {
       } else {
 
         try {
-          // console.log("try block");
-          console.log(formData);
           dispatch(signInStart());
 
           const res = await fetch('/api/auth/signin', {
@@ -110,25 +102,16 @@ function Signup() {
           });
     
           const data = await res.json();
-          console.log("data:",data);
     
           if (data.success === false){
-            console.log("false")
-            // setLoading(false);
-            // setError(data.message);
             dispatch(signInFailure(data.message));
             return;
           }
-    
-          // setLoading(false);
-          // setError(null);
+  
           dispatch(signInSuccess(data));
           navigate("/");
     
         } catch (error) {
-          console.log("catch")
-          // setLoading(false);
-          // setError(error.message);
           dispatch(signInFailure(error.message));
         }
         

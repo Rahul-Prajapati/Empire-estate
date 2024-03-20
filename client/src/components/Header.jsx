@@ -27,9 +27,9 @@ const Header = () =>{
   }, [location.search]);
 
     return (
-       <div className='flex justify-between bg-slate-200 m-3 p-4' >
+       <div className='flex justify-between bg-slate-200 m-1 p-2' >
         <h1>
-            <span className='font-bold text-3xl text-red-500' >Empire Estate</span>
+            <span className='font-bold text-xl text-red-500 sm:text-3xl ' >Empire Estate</span>
         </h1>
         <form className='flex bg-slate-100 rounded-xl p-1'
         onSubmit={handleSubmit}>
@@ -37,7 +37,7 @@ const Header = () =>{
             <button><FaSearch className=' my-3  ' /></button>
             
         </form>
-        <ul className='flex p-1 gap-1'>
+        <ul className='flex p-3 gap-1'>
             <li className='sm:inline hover:underline '><Link to="/">Home</Link></li>
             <li className='sm:inline hover:underline '><Link to="/about">About</Link></li>
            
@@ -49,7 +49,7 @@ const Header = () =>{
               </Link>
             ) : (
               <Link to='/Signup'>
-              <li className=' text-slate-700 hover:underline'> Sign up</li>
+              <li className=' text-slate-700 hover:underline'>Signup</li>
               </Link>
             )}
           
