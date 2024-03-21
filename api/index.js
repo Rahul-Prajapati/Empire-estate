@@ -5,6 +5,7 @@ import userRouter from './routes/user_route.js';
 import authRouter  from './routes/auth_route.js';
 import cookieParser from 'cookie-parser';
 import listingRouter from './routes/accomodation_route.js';
+import path from 'path';
 dotenv.config();
 
 mongoose.connect(process.env.MONGODB)
@@ -14,6 +15,8 @@ mongoose.connect(process.env.MONGODB)
   .catch((err) => {
     console.log(err);
   });
+
+const __dirname = path.resolve();  
 
 const app = express();
 
@@ -40,3 +43,9 @@ app.use((err, req, res, next) => {
     message,
   });
 });
+
+app.use(express.static(path.join(__dirname, '/client/dist')));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html'));
+})
