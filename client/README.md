@@ -57,6 +57,14 @@ listing API route is created
 show listing functionality is added
 delete show listing api route is created
 delete show listing functionality is added 
+create update listing api route
+create listing page with complete UI
+search page is created added listing functionality
+install Swiper Library for Home page
+created home page with listing items
+created about page
+added dark mode features
+add pre Installation
 
 
 
