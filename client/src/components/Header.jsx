@@ -2,7 +2,7 @@ import { FaSearch, FaMoon, FaSun  } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch  } from 'react-redux';
 import { useEffect, useState } from 'react';
-import { toggleTheme } from '../slice/themeSlice.js'
+//import { toggleTheme } from '../slice/themeSlice.js'
 
 const Header = () =>{
    const { currentUser }  = useSelector((store) => store.user);
@@ -10,7 +10,7 @@ const Header = () =>{
    const navigate = useNavigate();
    const dispatch = useDispatch();
    const {theme} = useSelector((store) => store.theme);
-   
+
    const handleSubmit = (e) => {
     e.preventDefault();
     const urlParams = new URLSearchParams(window.location.search);
@@ -37,10 +37,10 @@ const Header = () =>{
             <input className='bg-transparent py-1 rounded-lg focus:outline-none w-24 sm:w-64' type='text' placeholder=' Search' value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
             <button><FaSearch className='my-3' /></button>      
         </form>
-        <button 
+        {/* <button 
           className='w-12 h-10 hidden sm:inline py-4' onClick={()=>dispatch(toggleTheme())}> 
           {theme === 'light' ? <FaSun /> : <FaMoon/>}    
-        </button>
+        </button> */}
         <ul className='flex p-3 gap-1'>
             <li className='sm:inline hover:underline '><Link to="/">Home</Link></li>
             <li className='sm:inline hover:underline '><Link to="/about">About</Link></li>
